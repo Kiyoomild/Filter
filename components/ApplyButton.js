@@ -5,7 +5,7 @@ const ApplyButton = ({ selectedCategory, price }) => {
   return (
     <TouchableOpacity
       style={styles.applyButton}
-      onPress={() => alert(`Filters Applied! Category: ${selectedCategory}, Price: ${price}`)}
+      onPress={() => alert("Processing...")}
     >
       <Text style={styles.applyText}>Apply</Text>
     </TouchableOpacity>
@@ -14,12 +14,19 @@ const ApplyButton = ({ selectedCategory, price }) => {
 
 const styles = StyleSheet.create({
   applyButton: {
-    backgroundColor: "#FF6B00",
-    padding: 15,
-    borderRadius: 10,
+    backgroundColor: "#FD561F",
+    padding: 5,
+    borderRadius: 20,
     alignItems: "center",
+    width: 150,
+    height: 40,
+    marginTop: -10,
   },
-  applyText: { color: "white", fontWeight: "bold" },
+  applyText: { 
+    color: "white", 
+    fontWeight: "Regular",
+    fontSize: 22, 
+  },
 });
 
 export default ApplyButton;

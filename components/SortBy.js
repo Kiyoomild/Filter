@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-const SortBy = ({ selectedCategory }) => {
-  const [rating, setRating] = useState(0); // 0 to 5 stars
-
+const SortBy = ({ sortBy, setSortBy }) => {
   const handleRating = (star) => {
-    setRating(star);
+    setSortBy(star); // ใช้ค่าจาก props เพื่อจัดการการเลือกการจัดเรียง
   };
 
   const renderStars = () => {
@@ -13,7 +11,14 @@ const SortBy = ({ selectedCategory }) => {
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <TouchableOpacity key={i} onPress={() => handleRating(i)}>
-          <Text style={i <= rating ? styles.filledStar : styles.emptyStar}>⭐</Text>
+          <Image
+            source={
+              i <= sortBy
+                ? require("../assets/icons/StarSelect.png")
+                : require("../assets/icons/Star.png")
+            }
+            style={styles.starImage}
+          />
         </TouchableOpacity>
       );
     }
@@ -23,20 +28,38 @@ const SortBy = ({ selectedCategory }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sort by</Text>
-      <Text>Selected Category: {selectedCategory ? `Category ${selectedCategory}` : "None"}</Text>
-      <View style={styles.starsRow}>{renderStars()}</View>
-      <Text style={styles.ratingLabel}>Rating: {rating} Star(s)</Text>
+      <View style={styles.starsRow}>
+        <Text style={styles.ratingLabel}>Top Rated</Text>
+        {renderStars()}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { marginVertical: 10 },
-  title: { fontSize: 18, fontWeight: "bold", marginBottom: 10 },
-  starsRow: { flexDirection: "row", marginTop: 5 },
-  filledStar: { fontSize: 28, color: "#FFA500", marginRight: 5 },
-  emptyStar: { fontSize: 28, color: "#ccc", marginRight: 5 },
-  ratingLabel: { marginTop: 5, fontSize: 14 },
+  container: {
+    marginVertical: 0,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "regular",
+    marginBottom: 5,
+  },
+  ratingLabel: {
+    marginRight: 10,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  starsRow: {
+    flexDirection: "row",
+    marginTop: 5,
+  },
+  starImage: {
+    width: 20,
+    height: 20,
+    marginRight: 3,
+    resizeMode: "contain",
+  },
 });
 
 export default SortBy;

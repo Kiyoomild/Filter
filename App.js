@@ -1,13 +1,22 @@
-import React from "react";
-import { SafeAreaView } from "react-native";
-import FilterScreen from "./components/FilterScreen";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import FilterScreen from './components/FilterScreen'; // ตรวจสอบเส้นทางอีกครั้ง
 
-const App = () => {
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <FilterScreen />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="FilterScreen">
+        <Stack.Screen
+          name="FilterScreen"
+          component={FilterScreen}
+          options={{ headerShown: false }} // ซ่อน header ของ Stack Navigator
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
 export default App;

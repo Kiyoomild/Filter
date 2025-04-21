@@ -43,7 +43,9 @@ const styles = StyleSheet.create({
  },
  icon: {
     width: 30, 
-    height: 30,  
+    height: 30,
+    justifyContent: 'center',
+    alignSelf: 'center', 
  },
  iconHeart: {
     width: 30,
@@ -65,8 +67,9 @@ const styles = StyleSheet.create({
   label: {
     color: '#fff',
     fontFamily: 'Kani-Regular',
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
+    marginTop: 5,
   },
 });
 
